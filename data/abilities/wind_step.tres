@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=3 format=3 uid="uid://windstepdata001"]
+
+[ext_resource type="Script" path="res://resources/ability_data.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://src/abilities/wind_step_effect.tscn" id="2_effect"]
+
+[resource]
+script = ExtResource("1_script")
+ability_name = &"wind_step"
+display_name = "Wind Step"
+description = "Dash through enemies with blinding speed, becoming invulnerable during movement."
+mp_cost = 20.0
+cooldown = 5.0
+cast_time = 0.4
+damage = 15.0
+ability_type = 3
+animation_name = &"ability"
+effect_scene = ExtResource("2_effect")
+movement_distance = 12.0

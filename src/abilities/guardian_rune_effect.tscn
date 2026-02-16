@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://guardianeff001"]
+
+[ext_resource type="Script" path="res://src/abilities/guardian_rune_effect.gd" id="1_script"]
+
+[node name="GuardianRuneEffect" type="Node3D"]
+script = ExtResource("1_script")

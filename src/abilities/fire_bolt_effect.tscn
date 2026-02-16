@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://firebolteff001"]
+
+[ext_resource type="Script" path="res://src/abilities/fire_bolt_effect.gd" id="1_script"]
+
+[node name="FireBoltEffect" type="Node3D"]
+script = ExtResource("1_script")

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=3 format=3 uid="uid://guardianrdata01"]
+
+[ext_resource type="Script" path="res://resources/ability_data.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://src/abilities/guardian_rune_effect.tscn" id="2_effect"]
+
+[resource]
+script = ExtResource("1_script")
+ability_name = &"guardian_rune"
+display_name = "Guardian Rune"
+description = "Inscribe a protective rune that grants temporary invulnerability."
+mp_cost = 35.0
+cooldown = 15.0
+cast_time = 0.5
+damage = 0.0
+ability_type = 4
+animation_name = &"ability"
+effect_scene = ExtResource("2_effect")
+cc_duration = 3.0

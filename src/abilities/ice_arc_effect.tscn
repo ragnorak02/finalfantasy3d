@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://icearceff001"]
+
+[ext_resource type="Script" path="res://src/abilities/ice_arc_effect.gd" id="1_script"]
+
+[node name="IceArcEffect" type="Node3D"]
+script = ExtResource("1_script")

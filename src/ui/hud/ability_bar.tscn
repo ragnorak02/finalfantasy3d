@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://abilitybar001"]
+
+[ext_resource type="Script" path="res://src/ui/hud/ability_bar.gd" id="1_bar"]
+[ext_resource type="PackedScene" uid="uid://abilityslot001" path="res://src/ui/hud/ability_slot.tscn" id="2_slot"]
+
+[node name="AbilityBar" type="HBoxContainer"]
+script = ExtResource("1_bar")
+theme_override_constants/separation = 8
+
+[node name="Slot1" parent="." instance=ExtResource("2_slot")]
+[node name="Slot2" parent="." instance=ExtResource("2_slot")]
+[node name="Slot3" parent="." instance=ExtResource("2_slot")]
+[node name="Slot4" parent="." instance=ExtResource("2_slot")]
+[node name="Slot5" parent="." instance=ExtResource("2_slot")]
+[node name="Slot6" parent="." instance=ExtResource("2_slot")]

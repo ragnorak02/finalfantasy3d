@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://slasharc001"]
+
+[node name="SlashArc" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 8
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB(-2, -1, -2, 4, 3, 4)
+process_material = SubResource("ParticleProcessMaterial_slash")
+draw_pass_1 = SubResource("SphereMesh_slash")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_slash"]
+direction = Vector3(0, 0, -1)
+spread = 45.0
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.03
+scale_max = 0.08
+color = Color(1.0, 1.0, 1.0, 0.8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_slash"]
+transparency = 1
+albedo_color = Color(1.0, 1.0, 1.0, 0.7)
+emission_enabled = true
+emission = Color(1.0, 1.0, 1.0, 1.0)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_slash"]
+material = SubResource("StandardMaterial3D_slash")
+radius = 0.03
+height = 0.06
+
+[node name="AutoFree" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="AutoFree" to="." method="queue_free"]

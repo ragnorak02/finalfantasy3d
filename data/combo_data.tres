@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="ComboChainData" load_steps=6 format=3 uid="uid://combodata001"]
+
+[ext_resource type="Script" path="res://resources/combo_chain_data.gd" id="1_script"]
+[ext_resource type="Script" path="res://resources/attack_move_data.gd" id="2_attack_script"]
+
+[sub_resource type="Resource" id="attack_1"]
+script = ExtResource("2_attack_script")
+animation_name = &"attack_1"
+damage_multiplier = 1.0
+hitbox_activation_time = 0.1
+hitbox_deactivation_time = 0.3
+combo_window_start = 0.3
+combo_window_end = 0.7
+forward_movement = 2.0
+
+[sub_resource type="Resource" id="attack_2"]
+script = ExtResource("2_attack_script")
+animation_name = &"attack_2"
+damage_multiplier = 1.2
+hitbox_activation_time = 0.1
+hitbox_deactivation_time = 0.35
+combo_window_start = 0.35
+combo_window_end = 0.75
+forward_movement = 2.5
+
+[sub_resource type="Resource" id="attack_3"]
+script = ExtResource("2_attack_script")
+animation_name = &"attack_3"
+damage_multiplier = 1.5
+hitbox_activation_time = 0.15
+hitbox_deactivation_time = 0.4
+combo_window_start = 0.0
+combo_window_end = 0.0
+forward_movement = 3.0
+
+[sub_resource type="Resource" id="heavy_finisher"]
+script = ExtResource("2_attack_script")
+animation_name = &"heavy_finisher"
+damage_multiplier = 2.5
+hitbox_activation_time = 0.2
+hitbox_deactivation_time = 0.5
+combo_window_start = 0.0
+combo_window_end = 0.0
+forward_movement = 4.0
+
+[resource]
+script = ExtResource("1_script")
+attacks = [SubResource("attack_1"), SubResource("attack_2"), SubResource("attack_3")]
+heavy_finisher = SubResource("heavy_finisher")

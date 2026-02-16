@@ -1,0 +1,257 @@
+[gd_scene load_steps=29 format=3 uid="uid://player001"]
+
+[ext_resource type="Script" path="res://src/player/player.gd" id="1_player"]
+[ext_resource type="Script" path="res://src/player/states/state_machine.gd" id="2_sm"]
+[ext_resource type="Script" path="res://src/player/states/idle_state.gd" id="3_idle"]
+[ext_resource type="Script" path="res://src/player/states/run_state.gd" id="4_run"]
+[ext_resource type="Script" path="res://src/player/states/sprint_state.gd" id="5_sprint"]
+[ext_resource type="Script" path="res://src/player/states/jump_state.gd" id="6_jump"]
+[ext_resource type="Script" path="res://src/player/states/fall_state.gd" id="7_fall"]
+[ext_resource type="Script" path="res://src/player/states/land_state.gd" id="8_land"]
+[ext_resource type="Script" path="res://src/player/states/dodge_state.gd" id="9_dodge"]
+[ext_resource type="Script" path="res://src/player/states/attack_1_state.gd" id="10_atk1"]
+[ext_resource type="Script" path="res://src/player/states/attack_2_state.gd" id="11_atk2"]
+[ext_resource type="Script" path="res://src/player/states/attack_3_state.gd" id="12_atk3"]
+[ext_resource type="Script" path="res://src/player/states/heavy_finisher_state.gd" id="13_heavy"]
+[ext_resource type="Script" path="res://src/player/states/lock_on_idle_state.gd" id="14_loidle"]
+[ext_resource type="Script" path="res://src/player/states/lock_on_strafe_state.gd" id="15_lostrafe"]
+[ext_resource type="Script" path="res://src/player/states/ability_state.gd" id="16_ability"]
+[ext_resource type="Script" path="res://src/player/states/flinch_state.gd" id="17_flinch"]
+[ext_resource type="Script" path="res://src/player/components/stats_component.gd" id="18_stats"]
+[ext_resource type="Script" path="res://src/player/components/combat_component.gd" id="19_combat"]
+[ext_resource type="Script" path="res://src/player/components/ability_caster.gd" id="20_caster"]
+[ext_resource type="Script" path="res://src/player/components/lock_on_component.gd" id="21_lockon"]
+[ext_resource type="Script" path="res://src/player/components/mp_regen_component.gd" id="22_mpregen"]
+[ext_resource type="Script" path="res://src/player/components/hurtbox_component.gd" id="23_hurtbox"]
+[ext_resource type="Script" path="res://src/player/components/hitbox_component.gd" id="24_hitbox"]
+[ext_resource type="Resource" path="res://data/player_stats.tres" id="25_statsdata"]
+[ext_resource type="Resource" path="res://data/combo_data.tres" id="26_combodata"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_001"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hurtbox"]
+radius = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hitbox"]
+size = Vector3(1.0, 1.0, 1.5)
+
+[sub_resource type="Animation" id="Animation_idle"]
+resource_name = "idle"
+length = 1.0
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_run"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_sprint"]
+resource_name = "sprint"
+length = 0.4
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_jump"]
+resource_name = "jump"
+length = 0.5
+
+[sub_resource type="Animation" id="Animation_fall"]
+resource_name = "fall"
+length = 1.0
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_land"]
+resource_name = "land"
+length = 0.15
+
+[sub_resource type="Animation" id="Animation_dodge"]
+resource_name = "dodge"
+length = 0.4
+
+[sub_resource type="Animation" id="Animation_attack_1"]
+resource_name = "attack_1"
+length = 0.5
+
+[sub_resource type="Animation" id="Animation_attack_2"]
+resource_name = "attack_2"
+length = 0.5
+
+[sub_resource type="Animation" id="Animation_attack_3"]
+resource_name = "attack_3"
+length = 0.6
+
+[sub_resource type="Animation" id="Animation_heavy_finisher"]
+resource_name = "heavy_finisher"
+length = 0.8
+
+[sub_resource type="Animation" id="Animation_flinch"]
+resource_name = "flinch"
+length = 0.4
+
+[sub_resource type="Animation" id="Animation_ability"]
+resource_name = "ability"
+length = 0.6
+
+[sub_resource type="Animation" id="Animation_lock_on_idle"]
+resource_name = "lock_on_idle"
+length = 1.0
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_lock_on_strafe"]
+resource_name = "lock_on_strafe"
+length = 0.6
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_RESET"]
+resource_name = "RESET"
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_001"]
+_data = {
+"RESET": SubResource("Animation_RESET"),
+"ability": SubResource("Animation_ability"),
+"attack_1": SubResource("Animation_attack_1"),
+"attack_2": SubResource("Animation_attack_2"),
+"attack_3": SubResource("Animation_attack_3"),
+"dodge": SubResource("Animation_dodge"),
+"fall": SubResource("Animation_fall"),
+"flinch": SubResource("Animation_flinch"),
+"heavy_finisher": SubResource("Animation_heavy_finisher"),
+"idle": SubResource("Animation_idle"),
+"jump": SubResource("Animation_jump"),
+"land": SubResource("Animation_land"),
+"lock_on_idle": SubResource("Animation_lock_on_idle"),
+"lock_on_strafe": SubResource("Animation_lock_on_strafe"),
+"run": SubResource("Animation_run"),
+"sprint": SubResource("Animation_sprint")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_player"]
+albedo_color = Color(0.2, 0.4, 0.9, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_player"]
+material = SubResource("StandardMaterial3D_player")
+radius = 0.4
+height = 1.8
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_player")
+stats_data = ExtResource("25_statsdata")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_001")
+
+[node name="PlayerModel" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("CapsuleMesh_player")
+
+[node name="FrontIndicator" type="MeshInstance3D" parent="PlayerModel"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.5, -0.4)
+mesh = SubResource("CapsuleMesh_player")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_001")
+}
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "player")]
+script = ExtResource("2_sm")
+initial_state = NodePath("Idle")
+player = NodePath("..")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_idle")
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("4_run")
+
+[node name="Sprint" type="Node" parent="StateMachine"]
+script = ExtResource("5_sprint")
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("6_jump")
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource("7_fall")
+
+[node name="Land" type="Node" parent="StateMachine"]
+script = ExtResource("8_land")
+
+[node name="Dodge" type="Node" parent="StateMachine"]
+script = ExtResource("9_dodge")
+
+[node name="Attack1" type="Node" parent="StateMachine"]
+script = ExtResource("10_atk1")
+
+[node name="Attack2" type="Node" parent="StateMachine"]
+script = ExtResource("11_atk2")
+
+[node name="Attack3" type="Node" parent="StateMachine"]
+script = ExtResource("12_atk3")
+
+[node name="HeavyFinisher" type="Node" parent="StateMachine"]
+script = ExtResource("13_heavy")
+
+[node name="LockOnIdle" type="Node" parent="StateMachine"]
+script = ExtResource("14_loidle")
+
+[node name="LockOnStrafe" type="Node" parent="StateMachine"]
+script = ExtResource("15_lostrafe")
+
+[node name="Ability" type="Node" parent="StateMachine"]
+script = ExtResource("16_ability")
+
+[node name="Flinch" type="Node" parent="StateMachine"]
+script = ExtResource("17_flinch")
+
+[node name="Components" type="Node" parent="."]
+
+[node name="StatsComponent" type="Node" parent="Components"]
+script = ExtResource("18_stats")
+stats_data = ExtResource("25_statsdata")
+
+[node name="CombatComponent" type="Node" parent="Components"]
+script = ExtResource("19_combat")
+combo_data = ExtResource("26_combodata")
+
+[node name="AbilityCaster" type="Node" parent="Components"]
+script = ExtResource("20_caster")
+
+[node name="LockOnComponent" type="Node" parent="Components"]
+script = ExtResource("21_lockon")
+
+[node name="MpRegenComponent" type="Node" parent="Components"]
+script = ExtResource("22_mpregen")
+
+[node name="HurtboxComponent" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+collision_layer = 32
+collision_mask = 16
+script = ExtResource("23_hurtbox")
+
+[node name="HurtboxShape" type="CollisionShape3D" parent="HurtboxComponent"]
+shape = SubResource("SphereShape3D_hurtbox")
+
+[node name="HitboxPivot" type="Node3D" parent="."]
+
+[node name="HitboxComponent" type="Area3D" parent="HitboxPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -1.0)
+collision_layer = 8
+collision_mask = 64
+monitoring = false
+script = ExtResource("24_hitbox")
+
+[node name="HitboxShape" type="CollisionShape3D" parent="HitboxPivot/HitboxComponent"]
+shape = SubResource("BoxShape3D_hitbox")
+
+[node name="DodgeCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ComboWindowTimer" type="Timer" parent="."]
+one_shot = true

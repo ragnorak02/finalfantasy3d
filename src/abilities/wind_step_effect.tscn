@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://windstepeff001"]
+
+[ext_resource type="Script" path="res://src/abilities/wind_step_effect.gd" id="1_script"]
+
+[node name="WindStepEffect" type="Node3D"]
+script = ExtResource("1_script")

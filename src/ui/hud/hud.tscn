@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://hud001"]
+
+[ext_resource type="Script" path="res://src/ui/hud/hud.gd" id="1_hud"]
+[ext_resource type="PackedScene" uid="uid://healthbar001" path="res://src/ui/hud/health_bar.tscn" id="2_hp"]
+[ext_resource type="PackedScene" uid="uid://mpbar001" path="res://src/ui/hud/mp_bar.tscn" id="3_mp"]
+[ext_resource type="PackedScene" uid="uid://abilitybar001" path="res://src/ui/hud/ability_bar.tscn" id="4_abilities"]
+[ext_resource type="PackedScene" uid="uid://lockonreticle001" path="res://src/ui/hud/lock_on_reticle.tscn" id="5_reticle"]
+[ext_resource type="PackedScene" uid="uid://mpfail001" path="res://src/ui/hud/mp_fail_indicator.tscn" id="6_mpfail"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_hud")
+
+[node name="TopLeft" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 340.0
+offset_bottom = 100.0
+
+[node name="HealthBar" parent="TopLeft" instance=ExtResource("2_hp")]
+layout_mode = 2
+
+[node name="MpBar" parent="TopLeft" instance=ExtResource("3_mp")]
+layout_mode = 2
+
+[node name="BottomCenter" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -100.0
+offset_right = 220.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="AbilityBar" parent="BottomCenter" instance=ExtResource("4_abilities")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LockOnReticle" parent="." instance=ExtResource("5_reticle")]
+layout_mode = 1
+
+[node name="MpFailIndicator" parent="." instance=ExtResource("6_mpfail")]
+layout_mode = 1

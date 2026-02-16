@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=3 format=3 uid="uid://fireboltdata001"]
+
+[ext_resource type="Script" path="res://resources/ability_data.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://src/abilities/fire_bolt_effect.tscn" id="2_effect"]
+
+[resource]
+script = ExtResource("1_script")
+ability_name = &"fire_bolt"
+display_name = "Fire Bolt"
+description = "Launch a blazing projectile that explodes on impact."
+mp_cost = 15.0
+cooldown = 4.0
+cast_time = 0.5
+damage = 30.0
+ability_type = 1
+animation_name = &"ability"
+effect_scene = ExtResource("2_effect")

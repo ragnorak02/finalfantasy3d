@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="AbilityData" load_steps=3 format=3 uid="uid://icearcdata001"]
+
+[ext_resource type="Script" path="res://resources/ability_data.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://src/abilities/ice_arc_effect.tscn" id="2_effect"]
+
+[resource]
+script = ExtResource("1_script")
+ability_name = &"ice_arc"
+display_name = "Ice Arc"
+description = "Sweep a freezing arc that slows and damages enemies in a cone."
+mp_cost = 25.0
+cooldown = 8.0
+cast_time = 0.6
+damage = 25.0
+ability_type = 2
+animation_name = &"ability"
+effect_scene = ExtResource("2_effect")
+aoe_radius = 5.0
+cc_duration = 2.0
