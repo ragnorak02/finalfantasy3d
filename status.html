@@ -35,6 +35,24 @@
   .stat-value { font-size: 1.5rem; font-weight: 700; color: var(--blue); }
   .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; }
   .timestamp { text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 2rem; }
+
+  /* Achievements section */
+  .ach-section { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem; }
+  .ach-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem; }
+  .ach-title { font-size: 1.1rem; font-weight: 600; }
+  .ach-meta { display: flex; gap: 1rem; align-items: center; font-size: 0.85rem; color: var(--muted); }
+  .ach-points { color: var(--yellow); font-weight: 600; }
+  .ach-list { list-style: none; font-size: 0.85rem; line-height: 2; }
+  .ach-list li { display: flex; align-items: center; gap: 0.5rem; }
+  .ach-icon { width: 22px; height: 22px; border-radius: 4px; background: var(--border); display: inline-flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0; }
+  .ach-icon.unlocked { background: rgba(63,185,80,0.2); color: var(--green); }
+  .ach-icon.locked { background: var(--border); color: var(--muted); }
+  .ach-name { font-weight: 500; }
+  .ach-pts { margin-left: auto; color: var(--yellow); font-size: 0.8rem; font-weight: 600; white-space: nowrap; }
+  .ach-date { color: var(--muted); font-size: 0.75rem; white-space: nowrap; }
+  .ach-empty { color: var(--muted); font-style: italic; font-size: 0.85rem; }
+  .reload-btn { background: var(--border); color: var(--text); border: 1px solid var(--muted); border-radius: 6px; padding: 0.3rem 0.75rem; font-size: 0.75rem; cursor: pointer; transition: background 0.2s; }
+  .reload-btn:hover { background: var(--muted); color: var(--bg); }
 </style>
 </head>
 <body>
@@ -125,6 +143,106 @@
   </ul>
 </div>
 
+<!-- Achievements -->
+<div class="ach-section" id="ach-section">
+  <div class="ach-header">
+    <span class="ach-title">Achievements</span>
+    <div class="ach-meta">
+      <span id="ach-count">— / —</span>
+      <span class="ach-points" id="ach-points">0 pts</span>
+      <button class="reload-btn" onclick="loadAchievements()">Reload Data</button>
+    </div>
+  </div>
+  <div class="progress-bar"><div class="progress-fill fill-yellow" id="ach-bar" style="width:0%"></div></div>
+  <div id="ach-recent-label" style="font-size:0.8rem; color:var(--muted); margin-bottom:0.4rem;">Recent Unlocks</div>
+  <ul class="ach-list" id="ach-list">
+    <li class="ach-empty">Loading achievements data...</li>
+  </ul>
+</div>
+
 <p class="timestamp">Last updated: 2026-02-16</p>
+
+<script>
+function loadAchievements() {
+  fetch('achievements.json?_=' + Date.now())
+    .then(function(r) { return r.json(); })
+    .then(function(data) { renderAchievements(data); })
+    .catch(function() { renderError(); });
+}
+
+function renderAchievements(data) {
+  var achs = data.achievements || [];
+  var total = achs.length;
+  var unlocked = achs.filter(function(a) { return a.unlocked; });
+  var earned = unlocked.reduce(function(s, a) { return s + a.points; }, 0);
+  var possible = achs.reduce(function(s, a) { return s + a.points; }, 0);
+  var pct = possible > 0 ? Math.round((earned / possible) * 100) : 0;
+
+  document.getElementById('ach-count').textContent = unlocked.length + ' / ' + total;
+  document.getElementById('ach-points').textContent = earned + ' / ' + possible + ' pts';
+  document.getElementById('ach-bar').style.width = pct + '%';
+
+  var list = document.getElementById('ach-list');
+  list.innerHTML = '';
+
+  if (unlocked.length === 0) {
+    document.getElementById('ach-recent-label').textContent = 'No achievements unlocked yet';
+    var li = document.createElement('li');
+    li.className = 'ach-empty';
+    li.textContent = 'Complete in-game challenges to earn achievements.';
+    list.appendChild(li);
+    return;
+  }
+
+  document.getElementById('ach-recent-label').textContent =
+    'Recent Unlocks (' + unlocked.length + ' earned)';
+
+  var recent = unlocked
+    .filter(function(a) { return a.unlockedAt; })
+    .sort(function(a, b) {
+      return new Date(b.unlockedAt) - new Date(a.unlockedAt);
+    })
+    .slice(0, 5);
+
+  if (recent.length === 0) {
+    recent = unlocked.slice(0, 5);
+  }
+
+  recent.forEach(function(a) {
+    var li = document.createElement('li');
+    var icon = document.createElement('span');
+    icon.className = 'ach-icon unlocked';
+    icon.textContent = '\u2713';
+    var name = document.createElement('span');
+    name.className = 'ach-name';
+    name.textContent = a.name;
+    var pts = document.createElement('span');
+    pts.className = 'ach-pts';
+    pts.textContent = '+' + a.points + ' pts';
+    li.appendChild(icon);
+    li.appendChild(name);
+    if (a.unlockedAt) {
+      var date = document.createElement('span');
+      date.className = 'ach-date';
+      date.textContent = new Date(a.unlockedAt).toLocaleDateString();
+      li.appendChild(date);
+    }
+    li.appendChild(pts);
+    list.appendChild(li);
+  });
+}
+
+function renderError() {
+  var list = document.getElementById('ach-list');
+  list.innerHTML = '';
+  document.getElementById('ach-recent-label').textContent = '';
+  var li = document.createElement('li');
+  li.className = 'ach-empty';
+  li.textContent = 'Could not load achievements.json — open this page from a local server.';
+  list.appendChild(li);
+}
+
+loadAchievements();
+</script>
 </body>
 </html>

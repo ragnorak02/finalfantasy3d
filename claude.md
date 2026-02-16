@@ -112,6 +112,13 @@ resources/            # Custom Resource class definitions
 - 6 abilities fully configured in `data/abilities/*.tres` with effect scenes
 - Test arena is a complete playable scene with 3 test dummies
 
+## Achievement System
+- **Data file:** `/achievements.json` — single source of truth (20 achievements, 285 pts)
+- **Integration guide:** `/achievements_integration.md` — menu contract, toast spec, unlock flow
+- **Dashboard:** `status.html` loads achievements.json and displays progress
+- **Rules:** Append-only, never reset unlocked state, always recalculate totals
+- **Future signal:** `Events.achievement_unlocked(achievement_id: String)`
+
 ## Conventions
 - GDScript style: snake_case functions/variables, PascalCase classes, UPPER_CASE constants
 - Signals defined centrally in `Events` autoload, not per-node

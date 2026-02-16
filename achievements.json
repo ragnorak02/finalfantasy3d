@@ -1,0 +1,190 @@
+{
+  "gameId": "finalfantasy3d",
+  "achievements": [
+    {
+      "id": "first_steps",
+      "name": "First Steps",
+      "description": "Enter the test arena for the first time",
+      "points": 5,
+      "icon": "assets/textures/ui/ach_first_steps.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "first_blood",
+      "name": "First Blood",
+      "description": "Deal damage to an enemy for the first time",
+      "points": 10,
+      "icon": "assets/textures/ui/ach_first_blood.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "combo_novice",
+      "name": "Combo Novice",
+      "description": "Complete a full 3-hit combo chain",
+      "points": 10,
+      "icon": "assets/textures/ui/ach_combo_novice.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "heavy_hitter",
+      "name": "Heavy Hitter",
+      "description": "Land a heavy finisher attack",
+      "points": 15,
+      "icon": "assets/textures/ui/ach_heavy_hitter.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "tactical_mind",
+      "name": "Tactical Mind",
+      "description": "Enter tactical mode for the first time",
+      "points": 10,
+      "icon": "assets/textures/ui/ach_tactical_mind.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "spell_slinger",
+      "name": "Spell Slinger",
+      "description": "Cast an ability for the first time",
+      "points": 10,
+      "icon": "assets/textures/ui/ach_spell_slinger.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "fire_starter",
+      "name": "Fire Starter",
+      "description": "Hit an enemy with Fire Bolt",
+      "points": 10,
+      "icon": "assets/textures/ui/ach_fire_starter.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "ice_cold",
+      "name": "Ice Cold",
+      "description": "Hit an enemy with Ice Arc",
+      "points": 10,
+      "icon": "assets/textures/ui/ach_ice_cold.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "lightning_rod",
+      "name": "Lightning Rod",
+      "description": "Hit an enemy with Lightning Thrust",
+      "points": 10,
+      "icon": "assets/textures/ui/ach_lightning_rod.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "rising_star",
+      "name": "Rising Star",
+      "description": "Hit an enemy with Rising Blade",
+      "points": 10,
+      "icon": "assets/textures/ui/ach_rising_star.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "wind_walker",
+      "name": "Wind Walker",
+      "description": "Use Wind Step to dash through the battlefield",
+      "points": 10,
+      "icon": "assets/textures/ui/ach_wind_walker.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "iron_guard",
+      "name": "Iron Guard",
+      "description": "Activate Guardian Rune shield",
+      "points": 10,
+      "icon": "assets/textures/ui/ach_iron_guard.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "full_arsenal",
+      "name": "Full Arsenal",
+      "description": "Use all 6 abilities at least once",
+      "points": 25,
+      "icon": "assets/textures/ui/ach_full_arsenal.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "lock_on_master",
+      "name": "Lock-On Master",
+      "description": "Lock on to a target and switch between enemies",
+      "points": 10,
+      "icon": "assets/textures/ui/ach_lock_on_master.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "dodge_artist",
+      "name": "Dodge Artist",
+      "description": "Avoid damage using dodge i-frames",
+      "points": 15,
+      "icon": "assets/textures/ui/ach_dodge_artist.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "mp_drought",
+      "name": "MP Drought",
+      "description": "Attempt to cast an ability with insufficient MP",
+      "points": 5,
+      "icon": "assets/textures/ui/ach_mp_drought.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "camera_commander",
+      "name": "Camera Commander",
+      "description": "Rotate the camera to all 4 cardinal directions",
+      "points": 10,
+      "icon": "assets/textures/ui/ach_camera_commander.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "dummy_destroyer",
+      "name": "Dummy Destroyer",
+      "description": "Defeat all 3 test dummies in the arena",
+      "points": 25,
+      "icon": "assets/textures/ui/ach_dummy_destroyer.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "combo_master",
+      "name": "Combo Master",
+      "description": "Reach a 10-hit combo count",
+      "points": 25,
+      "icon": "assets/textures/ui/ach_combo_master.png",
+      "unlocked": false,
+      "unlockedAt": null
+    },
+    {
+      "id": "untouchable",
+      "name": "Untouchable",
+      "description": "Defeat an enemy without taking any damage",
+      "points": 50,
+      "icon": "assets/textures/ui/ach_untouchable.png",
+      "unlocked": false,
+      "unlockedAt": null
+    }
+  ],
+  "meta": {
+    "totalPointsEarned": 0,
+    "totalPointsPossible": 285,
+    "lastUpdated": "2026-02-16T00:00:00.000Z"
+  }
+}
