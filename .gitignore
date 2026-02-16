@@ -21,4 +21,25 @@ Thumbs.db
 
 # Build exports
 build/
+dist/
 export/
+
+# Secrets and credentials
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+credentials.json
+service-account*.json
+
+# Database files
+*.sqlite
+*.db
+
+# Node.js (if tooling added)
+node_modules/
+
+# Large binary caches
+*.blend1

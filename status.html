@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Korean Fantasy RPG — Project Status</title>
+<style>
+  :root { --bg: #0d1117; --card: #161b22; --border: #30363d; --text: #c9d1d9; --muted: #8b949e; --green: #3fb950; --yellow: #d29922; --red: #f85149; --blue: #58a6ff; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); padding: 2rem; max-width: 960px; margin: 0 auto; }
+  h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+  .subtitle { color: var(--muted); margin-bottom: 2rem; font-size: 0.9rem; }
+  .phase { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem; }
+  .phase-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+  .phase-title { font-size: 1.1rem; font-weight: 600; }
+  .badge { padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+  .badge-done { background: rgba(63,185,80,0.15); color: var(--green); }
+  .badge-next { background: rgba(210,153,34,0.15); color: var(--yellow); }
+  .badge-future { background: rgba(139,148,158,0.15); color: var(--muted); }
+  .progress-bar { width: 100%; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; margin-bottom: 0.75rem; }
+  .progress-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+  .fill-green { background: var(--green); }
+  .fill-yellow { background: var(--yellow); }
+  .fill-gray { background: var(--muted); }
+  .checklist { list-style: none; font-size: 0.9rem; line-height: 1.8; }
+  .checklist li::before { content: ''; display: inline-block; width: 14px; height: 14px; border-radius: 3px; margin-right: 0.5rem; vertical-align: middle; position: relative; top: -1px; }
+  .checklist li.done::before { background: var(--green); content: '\2713'; color: var(--bg); font-size: 0.7rem; text-align: center; line-height: 14px; font-weight: bold; }
+  .checklist li.pending::before { border: 2px solid var(--border); background: transparent; }
+  .gap { background: rgba(248,81,73,0.08); border: 1px solid rgba(248,81,73,0.2); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem; }
+  .gap-title { color: var(--red); font-weight: 600; margin-bottom: 0.5rem; }
+  .gap-list { list-style: none; font-size: 0.85rem; color: var(--muted); line-height: 1.8; }
+  .gap-list li::before { content: '\26A0'; margin-right: 0.5rem; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; margin-bottom: 1.5rem; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; text-align: center; }
+  .stat-value { font-size: 1.5rem; font-weight: 700; color: var(--blue); }
+  .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; }
+  .timestamp { text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 2rem; }
+</style>
+</head>
+<body>
+
+<h1>Korean Fantasy RPG</h1>
+<p class="subtitle">Godot 4.4 &bull; GDScript &bull; Isometric Action RPG</p>
+
+<div class="stats">
+  <div class="stat"><div class="stat-value">58</div><div class="stat-label">Scripts (.gd)</div></div>
+  <div class="stat"><div class="stat-value">33</div><div class="stat-label">Scenes (.tscn)</div></div>
+  <div class="stat"><div class="stat-value">9</div><div class="stat-label">Resources (.tres)</div></div>
+  <div class="stat"><div class="stat-value">3</div><div class="stat-label">Shaders</div></div>
+  <div class="stat"><div class="stat-value">6</div><div class="stat-label">Abilities</div></div>
+  <div class="stat"><div class="stat-value">8</div><div class="stat-label">VFX Scenes</div></div>
+</div>
+
+<!-- Phase 1 -->
+<div class="phase">
+  <div class="phase-header">
+    <span class="phase-title">Phase 1 — Prototype</span>
+    <span class="badge badge-done">COMPLETE</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill fill-green" style="width:100%"></div></div>
+  <ul class="checklist">
+    <li class="done">Player state machine (13 states)</li>
+    <li class="done">3-hit combo chain + heavy finisher</li>
+    <li class="done">6 abilities with AbilityData resources</li>
+    <li class="done">Lock-on targeting + switching</li>
+    <li class="done">Tactical mode (slow-time UI)</li>
+    <li class="done">Component architecture (Stats, Combat, Hitbox, Hurtbox, MpRegen, LockOn)</li>
+    <li class="done">Event bus (Events autoload)</li>
+    <li class="done">HUD (HP, MP, ability bar, lock-on reticle)</li>
+    <li class="done">Menus (main, pause, options)</li>
+    <li class="done">Isometric camera with snap rotation</li>
+    <li class="done">8 GPU particle VFX scenes</li>
+    <li class="done">Test arena with 3 enemy dummies</li>
+    <li class="done">Controller + keyboard/mouse bindings</li>
+  </ul>
+</div>
+
+<!-- Phase 2 -->
+<div class="phase">
+  <div class="phase-header">
+    <span class="phase-title">Phase 2 — Polish &amp; Content</span>
+    <span class="badge badge-next">UP NEXT</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill fill-yellow" style="width:0%"></div></div>
+  <ul class="checklist">
+    <li class="pending">Audio: SFX + music</li>
+    <li class="pending">3D character models</li>
+    <li class="pending">Skeletal animations</li>
+    <li class="pending">Textures &amp; materials</li>
+    <li class="pending">Enemy AI behaviors</li>
+    <li class="pending">Additional enemy types</li>
+    <li class="pending">First real level environment</li>
+    <li class="pending">Save/load system</li>
+    <li class="pending">Floating damage numbers</li>
+  </ul>
+</div>
+
+<!-- Phase 3 -->
+<div class="phase">
+  <div class="phase-header">
+    <span class="phase-title">Phase 3 — Content &amp; Systems</span>
+    <span class="badge badge-future">PLANNED</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill fill-gray" style="width:0%"></div></div>
+  <ul class="checklist">
+    <li class="pending">Inventory / equipment</li>
+    <li class="pending">Dialogue / NPC system</li>
+    <li class="pending">Quest framework</li>
+    <li class="pending">Multiple zones / level transitions</li>
+    <li class="pending">Boss encounters</li>
+    <li class="pending">Skill tree / progression</li>
+    <li class="pending">Advanced VFX polish</li>
+  </ul>
+</div>
+
+<!-- Known Gaps -->
+<div class="gap">
+  <div class="gap-title">Known Gaps (Not Bugs)</div>
+  <ul class="gap-list">
+    <li>Zero audio assets — AudioManager stubs present, all callback bodies are <code>pass</code></li>
+    <li>Zero 3D models — all geometry is placeholder primitives (Capsule, Box, Plane)</li>
+    <li>Zero textures — flat albedo_color materials only</li>
+    <li>Animation stubs defined (16) but no keyframe data</li>
+    <li>Enemy AI passive — test dummies only</li>
+  </ul>
+</div>
+
+<p class="timestamp">Last updated: 2026-02-16</p>
+</body>
+</html>
