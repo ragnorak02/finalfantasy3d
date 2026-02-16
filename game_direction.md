@@ -1,4 +1,4 @@
-# Game Direction — Korean Fantasy RPG
+# Game Direction — Final Fantasy 3D
 
 ## Vision
 A Korean medieval fantasy hybrid action RPG with fluid combat, tactical ability usage,

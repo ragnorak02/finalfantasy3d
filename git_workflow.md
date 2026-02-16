@@ -1,4 +1,4 @@
-# Git Workflow — Korean Fantasy RPG
+# Git Workflow — Final Fantasy 3D
 
 ## Quick Reference
 

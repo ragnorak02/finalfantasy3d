@@ -1,4 +1,4 @@
-# Korean Fantasy RPG - Claude Project Intelligence
+# Final Fantasy 3D - Claude Project Intelligence
 
 ## Project Overview
 Korean medieval fantasy hybrid action RPG built in Godot 4.4 with GDScript.

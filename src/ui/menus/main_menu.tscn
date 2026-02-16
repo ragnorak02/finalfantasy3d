@@ -36,7 +36,7 @@ offset_bottom = 250.0
 grow_horizontal = 2
 horizontal_alignment = 1
 vertical_alignment = 1
-text = "Korean Fantasy RPG"
+text = "Final Fantasy 3D"
 label_settings = SubResource("LabelSettings_title")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]

@@ -1,4 +1,4 @@
-# Test Plan — Korean Fantasy RPG
+# Test Plan — Final Fantasy 3D
 
 ## How to Test
 No automated test framework is currently configured. All testing is manual via the Godot editor.
