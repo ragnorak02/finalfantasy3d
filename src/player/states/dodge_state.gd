@@ -17,7 +17,7 @@ func enter(_prev_state: StringName) -> void:
 	player.start_dodge_cooldown()
 
 	# Spawn dodge trail VFX
-	var trail := preload("res://src/vfx/dodge_trail.tscn").instantiate()
+	var trail: Node3D = preload("res://src/vfx/dodge_trail.tscn").instantiate()
 	player.get_tree().current_scene.add_child(trail)
 	trail.global_position = player.global_position + Vector3.UP
 

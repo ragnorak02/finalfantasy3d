@@ -1,7 +1,7 @@
 class_name StateMachine extends Node
 
 @export var initial_state: State
-@export var player: CharacterBody3D
+@export var player: Player
 
 var current_state: State
 var states: Dictionary = {}

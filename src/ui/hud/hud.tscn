@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://hud001"]
+[gd_scene load_steps=9 format=3 uid="uid://hud001"]
 
 [ext_resource type="Script" path="res://src/ui/hud/hud.gd" id="1_hud"]
 [ext_resource type="PackedScene" uid="uid://healthbar001" path="res://src/ui/hud/health_bar.tscn" id="2_hp"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://abilitybar001" path="res://src/ui/hud/ability_bar.tscn" id="4_abilities"]
 [ext_resource type="PackedScene" uid="uid://lockonreticle001" path="res://src/ui/hud/lock_on_reticle.tscn" id="5_reticle"]
 [ext_resource type="PackedScene" uid="uid://mpfail001" path="res://src/ui/hud/mp_fail_indicator.tscn" id="6_mpfail"]
+[ext_resource type="PackedScene" uid="uid://ctrloverlay001" path="res://src/ui/hud/controls_overlay.tscn" id="7_ctrl"]
+[ext_resource type="PackedScene" uid="uid://debugoverlay001" path="res://src/ui/hud/debug_overlay.tscn" id="8_debug"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -39,8 +41,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -220.0
-offset_top = -100.0
+offset_top = -210.0
 offset_right = 220.0
+offset_bottom = -110.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -56,4 +59,10 @@ grow_vertical = 2
 layout_mode = 1
 
 [node name="MpFailIndicator" parent="." instance=ExtResource("6_mpfail")]
+layout_mode = 1
+
+[node name="ControlsOverlay" parent="." instance=ExtResource("7_ctrl")]
+layout_mode = 1
+
+[node name="DebugOverlay" parent="." instance=ExtResource("8_debug")]
 layout_mode = 1

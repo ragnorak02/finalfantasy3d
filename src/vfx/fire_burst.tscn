@@ -1,15 +1,4 @@
-[gd_scene format=3 uid="uid://fireburst001"]
-
-[node name="FireBurst" type="Node3D"]
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-amount = 24
-lifetime = 0.5
-one_shot = true
-explosiveness = 0.9
-visibility_aabb = AABB(-3, -3, -3, 6, 6, 6)
-process_material = SubResource("ParticleProcessMaterial_fire")
-draw_pass_1 = SubResource("SphereMesh_fire")
+[gd_scene load_steps=4 format=3 uid="uid://fireburst001"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fire"]
 direction = Vector3(0, 1, 0)
@@ -31,6 +20,17 @@ emission_energy_multiplier = 5.0
 material = SubResource("StandardMaterial3D_fire")
 radius = 0.08
 height = 0.16
+
+[node name="FireBurst" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 24
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.9
+visibility_aabb = AABB(-3, -3, -3, 6, 6, 6)
+process_material = SubResource("ParticleProcessMaterial_fire")
+draw_pass_1 = SubResource("SphereMesh_fire")
 
 [node name="AutoFree" type="Timer" parent="."]
 wait_time = 0.8

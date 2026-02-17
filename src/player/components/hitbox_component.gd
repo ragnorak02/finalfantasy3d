@@ -30,6 +30,6 @@ func _on_area_entered(area: Area3D) -> void:
 		area.receive_hit(self)
 		Events.damage_dealt.emit(target_root, damage, source)
 		Events.camera_shake_requested.emit(0.15, 0.2)
-		var vfx := preload("res://src/vfx/hit_spark.tscn").instantiate()
+		var vfx: Node3D = preload("res://src/vfx/hit_spark.tscn").instantiate()
 		get_tree().current_scene.add_child(vfx)
 		vfx.global_position = area.global_position

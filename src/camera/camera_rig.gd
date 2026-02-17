@@ -6,6 +6,8 @@ class_name CameraRig extends Node3D
 @export var default_ortho_size: float = 16.0
 @export var lockon_ortho_size: float = 20.0
 @export var pitch_angle: float = -35.0
+@export var smooth_rotation_sensitivity: float = 2.5
+@export var mouse_rotation_sensitivity: float = 0.003
 
 @onready var yaw_pivot: Node3D = $YawPivot
 @onready var pitch_pivot: Node3D = $YawPivot/PitchPivot
@@ -16,6 +18,9 @@ var target_yaw: float = 0.0
 var current_yaw: float = 0.0
 var is_locked_on: bool = false
 var lock_on_target: Node3D = null
+
+# Smooth rotation
+var _mouse_yaw_delta: float = 0.0
 
 # Camera shake
 var _shake_intensity: float = 0.0
@@ -35,10 +40,26 @@ func _ready() -> void:
 	Events.lock_on_target_switched.connect(_on_lock_on_switched)
 
 func _process(delta: float) -> void:
+	_update_smooth_rotation(delta)
 	_follow_target(delta)
 	_update_yaw(delta)
 	_update_ortho_size(delta)
 	_update_shake(delta)
+
+func _update_smooth_rotation(delta: float) -> void:
+	if is_locked_on:
+		_mouse_yaw_delta = 0.0
+		return
+
+	# Right stick continuous rotation
+	var stick_x := Input.get_joy_axis(0, JOY_AXIS_RIGHT_X)
+	if absf(stick_x) > 0.15:
+		target_yaw -= stick_x * smooth_rotation_sensitivity * delta
+
+	# Mouse accumulated delta
+	if absf(_mouse_yaw_delta) > 0.0:
+		target_yaw -= _mouse_yaw_delta
+		_mouse_yaw_delta = 0.0
 
 func _follow_target(delta: float) -> void:
 	if target == null:
@@ -93,3 +114,5 @@ func _unhandled_input(event: InputEvent) -> void:
 		Events.camera_snap_rotation_requested.emit(1)
 	elif event.is_action_pressed(&"camera_rotate_right"):
 		Events.camera_snap_rotation_requested.emit(-1)
+	elif event is InputEventMouseMotion and not is_locked_on:
+		_mouse_yaw_delta += event.relative.x * mouse_rotation_sensitivity

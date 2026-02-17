@@ -1,9 +1,9 @@
 class_name State extends Node
 
 var state_machine: StateMachine
-var player: CharacterBody3D
+var player: Player
 
-func setup(sm: StateMachine, p: CharacterBody3D) -> void:
+func setup(sm: StateMachine, p: Player) -> void:
 	state_machine = sm
 	player = p
 

@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Final Fantasy 3D — Project Status</title>
 <style>
-  :root { --bg: #0d1117; --card: #161b22; --border: #30363d; --text: #c9d1d9; --muted: #8b949e; --green: #3fb950; --yellow: #d29922; --red: #f85149; --blue: #58a6ff; }
+  :root { --bg: #0d1117; --card: #161b22; --border: #30363d; --text: #c9d1d9; --muted: #8b949e; --green: #3fb950; --yellow: #d29922; --red: #f85149; --blue: #58a6ff; --purple: #bc8cff; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); padding: 2rem; max-width: 960px; margin: 0 auto; }
   h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+  h2 { font-size: 1.2rem; margin-bottom: 0.75rem; color: var(--blue); }
   .subtitle { color: var(--muted); margin-bottom: 2rem; font-size: 0.9rem; }
   .phase { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem; }
   .phase-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
@@ -30,11 +31,27 @@
   .gap-title { color: var(--red); font-weight: 600; margin-bottom: 0.5rem; }
   .gap-list { list-style: none; font-size: 0.85rem; color: var(--muted); line-height: 1.8; }
   .gap-list li::before { content: '\26A0'; margin-right: 0.5rem; }
-  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; margin-bottom: 1.5rem; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.75rem; margin-bottom: 1.5rem; }
   .stat { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; text-align: center; }
   .stat-value { font-size: 1.5rem; font-weight: 700; color: var(--blue); }
   .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; }
   .timestamp { text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 2rem; }
+
+  /* Milestones */
+  .milestones { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem; }
+  .milestone-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.4rem 0; font-size: 0.85rem; }
+  .milestone-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); flex-shrink: 0; margin-top: 0.3rem; }
+  .milestone-date { color: var(--muted); font-size: 0.75rem; white-space: nowrap; min-width: 80px; }
+
+  /* Suggestions */
+  .suggestions { background: rgba(188,140,255,0.06); border: 1px solid rgba(188,140,255,0.2); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem; }
+  .suggestions h2 { color: var(--purple); }
+  .suggest-category { font-weight: 600; color: var(--text); margin: 0.75rem 0 0.25rem; font-size: 0.9rem; }
+  .suggest-category:first-of-type { margin-top: 0; }
+  .suggest-list { list-style: none; font-size: 0.85rem; color: var(--muted); line-height: 1.9; padding-left: 0; }
+  .suggest-list li { padding-left: 1.25rem; position: relative; }
+  .suggest-list li::before { content: '\2192'; position: absolute; left: 0; color: var(--purple); }
+  .suggest-list .high { color: var(--text); }
 
   /* Achievements section */
   .ach-section { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.25rem; }
@@ -58,76 +75,108 @@
 <body>
 
 <h1>Final Fantasy 3D</h1>
-<p class="subtitle">Godot 4.4 &bull; GDScript &bull; Isometric Action RPG</p>
+<p class="subtitle">Godot 4.4 &bull; GDScript &bull; Isometric Action RPG &bull; Build 0.2.0-phase1</p>
 
 <div class="stats">
-  <div class="stat"><div class="stat-value">58</div><div class="stat-label">Scripts (.gd)</div></div>
-  <div class="stat"><div class="stat-value">33</div><div class="stat-label">Scenes (.tscn)</div></div>
+  <div class="stat"><div class="stat-value">61</div><div class="stat-label">Scripts (.gd)</div></div>
+  <div class="stat"><div class="stat-value">36</div><div class="stat-label">Scenes (.tscn)</div></div>
   <div class="stat"><div class="stat-value">9</div><div class="stat-label">Resources (.tres)</div></div>
   <div class="stat"><div class="stat-value">3</div><div class="stat-label">Shaders</div></div>
   <div class="stat"><div class="stat-value">6</div><div class="stat-label">Abilities</div></div>
   <div class="stat"><div class="stat-value">8</div><div class="stat-label">VFX Scenes</div></div>
+  <div class="stat"><div class="stat-value">15</div><div class="stat-label">Player States</div></div>
+  <div class="stat"><div class="stat-value">25</div><div class="stat-label">Automated Tests</div></div>
+</div>
+
+<!-- Recent Milestones -->
+<div class="milestones">
+  <h2>Recent Milestones</h2>
+  <div class="milestone-item">
+    <div class="milestone-dot"></div>
+    <span class="milestone-date">2026-02-16</span>
+    <span>Studio OS integration &mdash; game.config.json + automated test runner (25 tests, 6 suites)</span>
+  </div>
+  <div class="milestone-item">
+    <div class="milestone-dot"></div>
+    <span class="milestone-date">2026-02-16</span>
+    <span>Achievement system infrastructure &mdash; 20 achievements, 285 pts, dashboard integration</span>
+  </div>
+  <div class="milestone-item">
+    <div class="milestone-dot"></div>
+    <span class="milestone-date">2026-02-16</span>
+    <span>Debug overlay + controls overlay HUD added</span>
+  </div>
+  <div class="milestone-item">
+    <div class="milestone-dot"></div>
+    <span class="milestone-date">2026-02-16</span>
+    <span>Phase 1 prototype complete &mdash; all core combat, ability, and UI systems functional</span>
+  </div>
 </div>
 
 <!-- Phase 1 -->
 <div class="phase">
   <div class="phase-header">
-    <span class="phase-title">Phase 1 — Prototype</span>
+    <span class="phase-title">Phase 1 &mdash; Prototype</span>
     <span class="badge badge-done">COMPLETE</span>
   </div>
   <div class="progress-bar"><div class="progress-fill fill-green" style="width:100%"></div></div>
   <ul class="checklist">
-    <li class="done">Player state machine (13 states)</li>
+    <li class="done">Player state machine (15 states)</li>
     <li class="done">3-hit combo chain + heavy finisher</li>
     <li class="done">6 abilities with AbilityData resources</li>
     <li class="done">Lock-on targeting + switching</li>
     <li class="done">Tactical mode (slow-time UI)</li>
     <li class="done">Component architecture (Stats, Combat, Hitbox, Hurtbox, MpRegen, LockOn)</li>
     <li class="done">Event bus (Events autoload)</li>
-    <li class="done">HUD (HP, MP, ability bar, lock-on reticle)</li>
+    <li class="done">HUD (HP, MP, ability bar, lock-on reticle, debug/controls overlays)</li>
     <li class="done">Menus (main, pause, options)</li>
     <li class="done">Isometric camera with snap rotation</li>
     <li class="done">8 GPU particle VFX scenes</li>
     <li class="done">Test arena with 3 enemy dummies</li>
-    <li class="done">Controller + keyboard/mouse bindings</li>
+    <li class="done">Controller + keyboard/mouse bindings (22 actions)</li>
+    <li class="done">Achievement system (20 achievements, 285 pts)</li>
+    <li class="done">Studio OS integration (game.config.json + 25-test runner)</li>
   </ul>
 </div>
 
 <!-- Phase 2 -->
 <div class="phase">
   <div class="phase-header">
-    <span class="phase-title">Phase 2 — Polish &amp; Content</span>
+    <span class="phase-title">Phase 2 &mdash; Polish &amp; Content</span>
     <span class="badge badge-next">UP NEXT</span>
   </div>
   <div class="progress-bar"><div class="progress-fill fill-yellow" style="width:0%"></div></div>
   <ul class="checklist">
-    <li class="pending">Audio: SFX + music</li>
-    <li class="pending">3D character models</li>
-    <li class="pending">Skeletal animations</li>
-    <li class="pending">Textures &amp; materials</li>
-    <li class="pending">Enemy AI behaviors</li>
-    <li class="pending">Additional enemy types</li>
-    <li class="pending">First real level environment</li>
-    <li class="pending">Save/load system</li>
-    <li class="pending">Floating damage numbers</li>
+    <li class="pending"><strong>Combat Feel:</strong> Hit stop, screen shake, damage numbers, combo counter</li>
+    <li class="pending"><strong>Audio:</strong> SFX (combat, UI, abilities) + music (menu, combat, tactical)</li>
+    <li class="pending"><strong>Models:</strong> Player character, 3+ enemy types, environment props</li>
+    <li class="pending"><strong>Animations:</strong> Skeletal animations for all 15 player states</li>
+    <li class="pending"><strong>Textures:</strong> Materials, ground, walls, UI art</li>
+    <li class="pending"><strong>Enemy AI:</strong> State machine (patrol, chase, attack, stagger)</li>
+    <li class="pending"><strong>Level Design:</strong> First real environment (Korean temple courtyard)</li>
+    <li class="pending"><strong>Save/Load:</strong> Player progress persistence</li>
+    <li class="pending"><strong>Achievement Hooks:</strong> Wire gameplay events to unlock system</li>
   </ul>
 </div>
 
 <!-- Phase 3 -->
 <div class="phase">
   <div class="phase-header">
-    <span class="phase-title">Phase 3 — Content &amp; Systems</span>
+    <span class="phase-title">Phase 3 &mdash; Content &amp; Systems</span>
     <span class="badge badge-future">PLANNED</span>
   </div>
   <div class="progress-bar"><div class="progress-fill fill-gray" style="width:0%"></div></div>
   <ul class="checklist">
-    <li class="pending">Inventory / equipment</li>
+    <li class="pending">Inventory / equipment (sword, spear, staff weapon types)</li>
+    <li class="pending">Skill tree (3 evolution paths per ability)</li>
+    <li class="pending">Elemental status effects (burn, freeze, shock, knockback)</li>
+    <li class="pending">Ability combos (fire + wind = fire tornado)</li>
     <li class="pending">Dialogue / NPC system</li>
-    <li class="pending">Quest framework</li>
-    <li class="pending">Multiple zones / level transitions</li>
-    <li class="pending">Boss encounters</li>
-    <li class="pending">Skill tree / progression</li>
-    <li class="pending">Advanced VFX polish</li>
+    <li class="pending">Quest framework (main story + side quests)</li>
+    <li class="pending">Multiple zones (village, forest, temple, mountain)</li>
+    <li class="pending">Boss encounters (multi-phase patterns)</li>
+    <li class="pending">Parry / perfect guard mechanic</li>
+    <li class="pending">Advanced VFX (trails, afterimages, elemental auras)</li>
   </ul>
 </div>
 
@@ -135,11 +184,57 @@
 <div class="gap">
   <div class="gap-title">Known Gaps (Not Bugs)</div>
   <ul class="gap-list">
-    <li>Zero audio assets — AudioManager stubs present, all callback bodies are <code>pass</code></li>
-    <li>Zero 3D models — all geometry is placeholder primitives (Capsule, Box, Plane)</li>
-    <li>Zero textures — flat albedo_color materials only</li>
+    <li>Zero audio assets &mdash; AudioManager stubs present, all callback bodies are <code>pass</code></li>
+    <li>Zero 3D models &mdash; all geometry is placeholder primitives (Capsule, Box, Plane)</li>
+    <li>Zero textures &mdash; flat albedo_color materials only</li>
     <li>Animation stubs defined (16) but no keyframe data</li>
-    <li>Enemy AI passive — test dummies only</li>
+    <li>Enemy AI passive &mdash; test dummies only, no chase/attack behavior</li>
+    <li>Running Godot 4.6 binary but project targets 4.4 &mdash; consider official migration</li>
+  </ul>
+</div>
+
+<!-- Gameplay Suggestions -->
+<div class="suggestions">
+  <h2>Gameplay Improvement Suggestions</h2>
+
+  <div class="suggest-category">Combat Depth (Highest Impact)</div>
+  <ul class="suggest-list">
+    <li class="high"><strong>Hit stop + screen shake</strong> &mdash; 50-80ms freeze on heavy hits, camera shake on abilities. Transforms combat feel instantly.</li>
+    <li class="high"><strong>Dodge cancel windows</strong> &mdash; Allow dodging out of attack recovery frames. Makes combat more responsive and skill-expressive.</li>
+    <li class="high"><strong>Juggle system</strong> &mdash; Launcher attacks that pop enemies airborne for air combos. Rising Blade is a natural launcher.</li>
+    <li><strong>Parry mechanic</strong> &mdash; Timed guard (tap dodge before impact) rewards precision with counter-attack window.</li>
+    <li><strong>Charged heavy attacks</strong> &mdash; Hold to charge for increased damage/range/AoE with growing VFX.</li>
+  </ul>
+
+  <div class="suggest-category">Tactical Mode Enhancement</div>
+  <ul class="suggest-list">
+    <li class="high"><strong>Ability synergies</strong> &mdash; Show combo potential in UI (e.g., Fire + Wind = Fire Dash). Reward creative chaining.</li>
+    <li><strong>Ability queue</strong> &mdash; Queue 2-3 abilities in tactical mode that execute in sequence when unpaused.</li>
+    <li><strong>Target priority overlay</strong> &mdash; Show HP bars, elemental weaknesses, and threat levels during tactical pause.</li>
+  </ul>
+
+  <div class="suggest-category">Progression &amp; Replayability</div>
+  <ul class="suggest-list">
+    <li class="high"><strong>Arena challenge modes</strong> &mdash; Timed survival waves, no-damage runs, ability-restricted challenges.</li>
+    <li><strong>Training room</strong> &mdash; DPS dummy, combo counter, hitbox visualization, and move list reference.</li>
+    <li><strong>Ability mastery</strong> &mdash; Track per-ability usage, unlock evolved forms after mastery (Fire Bolt &rarr; Fire Barrage).</li>
+    <li><strong>New Game+</strong> &mdash; Carry abilities with scaled enemy difficulty.</li>
+  </ul>
+
+  <div class="suggest-category">Game Feel &amp; Polish</div>
+  <ul class="suggest-list">
+    <li><strong>Controller rumble</strong> &mdash; Haptic feedback on hits, ability impacts, and low HP warning.</li>
+    <li><strong>Kill slowdown</strong> &mdash; Brief 200ms slowdown when defeating the last enemy in an encounter.</li>
+    <li><strong>Dynamic music</strong> &mdash; Combat intensity scales with combo count and remaining enemies.</li>
+    <li><strong>Destructible environment</strong> &mdash; Break objects, trigger ability-based shortcuts (burn vines, freeze water).</li>
+  </ul>
+
+  <div class="suggest-category">Content Ideas</div>
+  <ul class="suggest-list">
+    <li><strong>Rival system</strong> &mdash; Recurring enemy that mirrors player abilities at story beats.</li>
+    <li><strong>Korean bestiary</strong> &mdash; Dokkaebi goblins, Gumiho fox spirits, Haetae guardians from Korean folklore.</li>
+    <li><strong>Weapon switching</strong> &mdash; Sword/spear/staff each with unique combo chains and ability synergies.</li>
+    <li><strong>Companion summons</strong> &mdash; Tactical mode summon that fights alongside player temporarily.</li>
   </ul>
 </div>
 
@@ -148,7 +243,7 @@
   <div class="ach-header">
     <span class="ach-title">Achievements</span>
     <div class="ach-meta">
-      <span id="ach-count">— / —</span>
+      <span id="ach-count">&mdash; / &mdash;</span>
       <span class="ach-points" id="ach-points">0 pts</span>
       <button class="reload-btn" onclick="loadAchievements()">Reload Data</button>
     </div>
@@ -160,7 +255,7 @@
   </ul>
 </div>
 
-<p class="timestamp">Last updated: 2026-02-16</p>
+<p class="timestamp">Last updated: 2026-02-16 &bull; Build 0.2.0-phase1</p>
 
 <script>
 function loadAchievements() {
@@ -238,7 +333,7 @@ function renderError() {
   document.getElementById('ach-recent-label').textContent = '';
   var li = document.createElement('li');
   li.className = 'ach-empty';
-  li.textContent = 'Could not load achievements.json — open this page from a local server.';
+  li.textContent = 'Could not load achievements.json \u2014 open this page from a local server.';
   list.appendChild(li);
 }
 

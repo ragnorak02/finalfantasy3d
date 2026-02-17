@@ -1,15 +1,4 @@
-[gd_scene format=3 uid="uid://windswoosh001"]
-
-[node name="WindSwoosh" type="Node3D"]
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-amount = 30
-lifetime = 0.3
-one_shot = true
-explosiveness = 0.0
-visibility_aabb = AABB(-5, -1, -5, 10, 3, 10)
-process_material = SubResource("ParticleProcessMaterial_wind")
-draw_pass_1 = SubResource("SphereMesh_wind")
+[gd_scene load_steps=4 format=3 uid="uid://windswoosh001"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wind"]
 direction = Vector3(0, 0.2, -1)
@@ -32,6 +21,17 @@ emission_energy_multiplier = 2.0
 material = SubResource("StandardMaterial3D_wind")
 radius = 0.03
 height = 0.06
+
+[node name="WindSwoosh" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 30
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.0
+visibility_aabb = AABB(-5, -1, -5, 10, 3, 10)
+process_material = SubResource("ParticleProcessMaterial_wind")
+draw_pass_1 = SubResource("SphereMesh_wind")
 
 [node name="AutoFree" type="Timer" parent="."]
 wait_time = 0.5

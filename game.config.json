@@ -1,0 +1,34 @@
+{
+  "id": "finalfantasy3d",
+  "title": "Final Fantasy 3D",
+  "engine": "godot",
+  "engineVersion": "4.4",
+  "genre": "Action RPG",
+  "entryScene": "res://src/ui/menus/main_menu.tscn",
+  "testCommand": "tests/run-tests.bat",
+  "launchArgs": ["--path", ".", "--", "res://src/world/test_arena.tscn"],
+  "meta": {
+    "lastGameplayUpdate": "2026-02-16",
+    "buildVersion": "0.2.0-phase1",
+    "progressPercent": 18,
+    "currentPhase": "Phase 1 Complete — Phase 2 Pending",
+    "stats": {
+      "scripts": 61,
+      "scenes": 36,
+      "resources": 9,
+      "shaders": 3,
+      "abilities": 6,
+      "vfxScenes": 8,
+      "playerStates": 15,
+      "achievements": 20,
+      "testSuites": 6,
+      "testCases": 25
+    },
+    "milestones": [
+      { "date": "2026-02-16", "label": "Phase 1 prototype complete — all core systems functional" },
+      { "date": "2026-02-16", "label": "Achievement system infrastructure (20 achievements, 285 pts)" },
+      { "date": "2026-02-16", "label": "Studio OS integration — game.config.json + test runner (25 tests)" },
+      { "date": "2026-02-16", "label": "Debug overlay + controls overlay HUD additions" }
+    ]
+  }
+}
