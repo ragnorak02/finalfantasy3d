@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "gameId": "finalfantasy3d",
+  "title": "Korean Fantasy RPG",
+  "lastUpdated": "2026-02-18T00:00:00Z",
+  "health": {
+    "progressPercent": 18,
+    "buildVersion": "0.1.0",
+    "assetStage": "placeholder"
+  },
+  "tech": {
+    "engine": "Godot",
+    "engineVersion": "4.4",
+    "languages": ["GDScript"],
+    "graphicsType": "3D"
+  },
+  "features": {
+    "controllerSupport": "complete",
+    "achievementsSystem": "partial",
+    "testScripts": "complete",
+    "saveSystem": "missing",
+    "settingsMenu": "missing",
+    "audio": "missing",
+    "vfx": "partial"
+  },
+  "milestones": {
+    "firstGraphicsPass": false,
+    "controllerIntegration": true,
+    "coreGameplayLoop": true,
+    "verticalSlice": false,
+    "contentComplete": false,
+    "productionReady": false
+  },
+  "testing": {
+    "testCommand": "tests/run-tests.bat",
+    "lastRunAt": null,
+    "status": "unknown",
+    "notes": "Full test suite"
+  },
+  "links": {
+    "repo": null,
+    "launcherId": "finalfantasy3d"
+  }
+}
