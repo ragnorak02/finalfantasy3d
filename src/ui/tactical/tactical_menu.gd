@@ -1,6 +1,6 @@
 extends Control
 
-@onready var card_container: HBoxContainer = $PanelContainer/HBoxContainer
+@onready var card_container: VBoxContainer = $PanelContainer/VBoxContainer
 @onready var desaturation_overlay: ColorRect = $DesaturationOverlay
 
 var _cards: Array = []
@@ -57,9 +57,9 @@ func _populate_cards() -> void:
 func _update_selection() -> void:
 	for i in _cards.size():
 		if i == _selected_index:
-			_cards[i].self_modulate = Color(1.2, 1.2, 1.0, 1.0)
+			_cards[i].self_modulate = Color(1.0, 0.85, 0.4, 1.0)
 		else:
-			_cards[i].self_modulate = Color.WHITE
+			_cards[i].self_modulate = Color(0.7, 0.7, 0.7, 1.0)
 
 func _on_card_selected(index: int) -> void:
 	_select_ability(index)
@@ -79,13 +79,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		GameManager.exit_tactical_mode()
 		get_viewport().set_input_as_handled()
 		return
-	if event.is_action_pressed(&"ui_left") or event.is_action_pressed(&"move_left"):
+	if event.is_action_pressed(&"ui_up") or event.is_action_pressed(&"move_up"):
 		_selected_index = (_selected_index - 1)
 		if _selected_index < 0:
 			_selected_index = _cards.size() - 1
 		_update_selection()
 		get_viewport().set_input_as_handled()
-	elif event.is_action_pressed(&"ui_right") or event.is_action_pressed(&"move_right"):
+	elif event.is_action_pressed(&"ui_down") or event.is_action_pressed(&"move_down"):
 		_selected_index = (_selected_index + 1) % _cards.size()
 		_update_selection()
 		get_viewport().set_input_as_handled()
