@@ -5,7 +5,7 @@ func _do_effect() -> void:
 	if target and is_instance_valid(target):
 		direction = (target.global_position - caster.global_position).normalized()
 	else:
-		direction = -caster.player_model.basis.z.normalized()
+		direction = caster.player_model.basis.z.normalized()
 	direction.y = 0.0
 	direction = direction.normalized()
 
@@ -26,5 +26,10 @@ func _do_effect() -> void:
 				var dmg := ability_data.damage if ability_data else 35.0
 				enemy.take_damage(dmg, caster)
 				Events.damage_dealt.emit(enemy, dmg, caster)
+				Events.hit_stop_requested.emit(0.065)
 				Events.camera_shake_requested.emit(0.25, 0.3)
+				var dmg_num := preload("res://src/ui/floating_damage_number.tscn").instantiate()
+				get_tree().current_scene.add_child(dmg_num)
+				dmg_num.global_position = enemy.global_position + Vector3.UP * 0.5
+				dmg_num.setup(dmg)
 	_finish()

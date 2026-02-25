@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://hud001"]
+[gd_scene load_steps=10 format=3 uid="uid://hud001"]
 
 [ext_resource type="Script" path="res://src/ui/hud/hud.gd" id="1_hud"]
 [ext_resource type="PackedScene" uid="uid://healthbar001" path="res://src/ui/hud/health_bar.tscn" id="2_hp"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://mpfail001" path="res://src/ui/hud/mp_fail_indicator.tscn" id="6_mpfail"]
 [ext_resource type="PackedScene" uid="uid://ctrloverlay001" path="res://src/ui/hud/controls_overlay.tscn" id="7_ctrl"]
 [ext_resource type="PackedScene" uid="uid://debugoverlay001" path="res://src/ui/hud/debug_overlay.tscn" id="8_debug"]
+[ext_resource type="PackedScene" path="res://src/ui/hud/combo_display.tscn" id="9_combo"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -62,6 +63,9 @@ layout_mode = 1
 layout_mode = 1
 
 [node name="ControlsOverlay" parent="." instance=ExtResource("7_ctrl")]
+layout_mode = 1
+
+[node name="ComboDisplay" parent="." instance=ExtResource("9_combo")]
 layout_mode = 1
 
 [node name="DebugOverlay" parent="." instance=ExtResource("8_debug")]

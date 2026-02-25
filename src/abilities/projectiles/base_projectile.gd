@@ -33,6 +33,10 @@ func _on_area_entered(area: Area3D) -> void:
 		if target_root.has_method("take_damage"):
 			target_root.take_damage(damage, source)
 		Events.damage_dealt.emit(target_root, damage, source)
+		var dmg_num := preload("res://src/ui/floating_damage_number.tscn").instantiate()
+		get_tree().current_scene.add_child(dmg_num)
+		dmg_num.global_position = target_root.global_position + Vector3.UP * 0.5
+		dmg_num.setup(damage)
 		queue_free()
 
 func _on_body_entered(body: Node3D) -> void:
